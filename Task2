@@ -1,0 +1,83 @@
+# Student Grade Tracker
+
+def calculate_letter_grade(average):
+    """Returns the letter grade based on the average score."""
+    if average >= 90:
+        return 'A'
+    elif average >= 80:
+        return 'B'
+    elif average >= 70:
+        return 'C'
+    elif average >= 60:
+        return 'D'
+    else:
+        return 'F'
+
+def calculate_gpa(average):
+    """Calculates GPA based on the average score."""
+    if average >= 90:
+        return 4.0
+    elif average >= 80:
+        return 3.0
+    elif average >= 70:
+        return 2.0
+    elif average >= 60:
+        return 1.0
+    else:
+        return 0.0
+
+def display_results(grades):
+    """Displays the results including average, letter grade, and GPA."""
+    total = sum(grades)
+    count = len(grades)
+    average = total / count
+    letter_grade = calculate_letter_grade(average)
+    gpa = calculate_gpa(average)
+
+    print("\n--- Grade Report ---")
+    print(f"Total Grades: {total:.2f}")
+    print(f"Number of Assignments: {count}")
+    print(f"Average Grade: {average:.2f}")
+    print(f"Letter Grade: {letter_grade}")
+    print(f"GPA: {gpa:.2f}")
+
+def main():
+    """Main function to track and manage student grades."""
+    print("Welcome to the Student Grade Tracker!")
+
+    grades = []
+    while True:
+        try:
+            print("\nOptions:")
+            print("1. Add a grade")
+            print("2. View results")
+            print("3. Exit")
+
+            choice = int(input("Enter your choice: "))
+
+            if choice == 1:
+                grade = float(input("Enter the grade (0-100): "))
+                if 0 <= grade <= 100:
+                    grades.append(grade)
+                    print("Grade added successfully!")
+                else:
+                    print("Please enter a valid grade between 0 and 100.")
+
+            elif choice == 2:
+                if grades:
+                    display_results(grades)
+                else:
+                    print("No grades have been entered yet.")
+
+            elif choice == 3:
+                print("Exiting the program. Goodbye!")
+                break
+
+            else:
+                print("Invalid choice. Please try again.")
+
+        except ValueError:
+            print("Invalid input. Please enter a number.")
+
+if __name__ == "__main__":
+    main()
